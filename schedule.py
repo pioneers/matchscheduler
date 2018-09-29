@@ -1,5 +1,6 @@
 import argparse
 from random import randint
+import os.path
 parser = argparse.ArgumentParser()
 parser.add_argument('-input')
 parser.add_argument('-n')
@@ -60,6 +61,16 @@ for i in range(totalRounds):
             team.lastMatch = len(matches) - 1
         matchedTeams = []
 
-for m in matches:
-    m_str = m.b1.name + ", " + m.b2.name + ", " + m.g1.name + ", " + m.g2.name + ", "
-    print(m_str)
+writeHeader = False
+if not os.path.isfile("matches.csv"):
+    writeHeader = True
+
+with open("matches.csv", "a") as f:
+    if writeHeader:
+        f.write("Blue 1 ID, Blue 1 Name, Blue 2 ID, Blue 2 Name, Gold 1 ID, Gold 1 Name, Gold 2 ID, Gold 2 Name\n")
+    for m in matches:
+        f.write(m.b1.id + "," + m.b1.name +
+        "," + m.b2.id + "," + m.b2.name +
+        "," + m.g1.id + "," + m.g1.name +
+        "," + m.g2.id + "," +
+        m.g2.name + "\n")
