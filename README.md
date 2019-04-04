@@ -1,8 +1,7 @@
 # matchscheduler
 
 Input: CSV of School Number, School Name
-Output: CSV with a match schedule
-
+Output: append matches.csv with a match schedule
 
 Example usage (prototype):
 
