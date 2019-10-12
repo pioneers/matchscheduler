@@ -5,6 +5,7 @@ from itertools import permutations
 import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('-input')
+parser.add_argument('-gap')
 args = parser.parse_args()
 print(args)
 
@@ -38,10 +39,10 @@ csvFile = args.input
 with open(csvFile) as f:
     for line in f:
         process(line)
-gap = 2 #Time before school can play again
+gap = int(args.gap) #Time before school can play again
 matches = []
 teamsLeft = schools.copy()
-totalRounds = len(schools)//4*3
+totalRounds = (len(schools)*3)//4
 for i in range(totalRounds):
     matchedTeams = []
     print(i)
@@ -73,6 +74,13 @@ for i in range(totalRounds):
             matchedTeams[p[1]].playedWith.append(matchedTeams[p[0]])
             matchedTeams[p[2]].playedWith.append(matchedTeams[p[3]])
             matchedTeams[p[3]].playedWith.append(matchedTeams[p[2]])
+
+            for i in range(2):
+                matchedTeams[p[i]].playedAgainst.append(matchedTeams[p[2]])
+                matchedTeams[p[i]].playedAgainst.append(matchedTeams[p[3]])
+                matchedTeams[p[i+2]].playedAgainst.append(matchedTeams[p[0]])
+                matchedTeams[p[i+2]].playedAgainst.append(matchedTeams[p[1]])
+
             for t in [matchedTeams[p[r]] for r in range(4)]:
                 t.canPlay = gap*-1 -1
             break
@@ -88,15 +96,25 @@ perm = list(permutations(range(4)))
 for p in perm:
     if matchedTeams[p[0]] not in matchedTeams[p[1]].playedWith and matchedTeams[p[2]] not in matchedTeams[p[3]].playedWith:
         matches.append(Match(matchedTeams[p[0]],matchedTeams[p[1]],matchedTeams[p[2]],matchedTeams[p[3]]))
+        for i in range(2):
+            matchedTeams[p[i]].playedAgainst.append(matchedTeams[p[2]])
+            matchedTeams[p[i]].playedAgainst.append(matchedTeams[p[3]])
+            matchedTeams[p[i+2]].playedAgainst.append(matchedTeams[p[0]])
+            matchedTeams[p[i+2]].playedAgainst.append(matchedTeams[p[1]])
         break
+
+for i in range(len(schools)):
+    print(schools[i].name, [y.name for y in schools[i].playedAgainst])
 
 writeHeader = False
 if not os.path.isfile("matches.csv"):
     writeHeader = True
 
+f = open("matches.csv", "w+")
+f.close()
+
 with open("matches.csv", "a") as f:
-    if writeHeader:
-        f.write("Blue 1 ID, Blue 1 Name, Blue 2 ID, Blue 2 Name, Gold 1 ID, Gold 1 Name, Gold 2 ID, Gold 2 Name\n")
+    f.write("Blue 1 ID, Blue 1 Name, Blue 2 ID, Blue 2 Name, Gold 1 ID, Gold 1 Name, Gold 2 ID, Gold 2 Name\n")
     for m in matches:
         print(m.g2.name)
         f.write(m.b1.id + "," + m.b1.name +
