@@ -1,19 +1,17 @@
 Blue 1 ID, Blue 1 Name, Blue 2 ID, Blue 2 Name, Gold 1 ID, Gold 1 Name, Gold 2 ID, Gold 2 Name
-37,CCPA,15,Pinole Valley,10,Skyline,1,Albany
-31,Arroyo,26,OSA,8,Bishop O'Dowd,29,Realm
-35,Hayward One,40,Salesian,17,ACLC,41,ARISE
-36,Miramonte,3,De Anza,42,John Henry,20,Encinal
-12,El Cerrito,9,Hercules,4,LPS Richmond,6,Middle College
-43,Hayward Two,36,Miramonte,20,Encinal,40,Salesian
-41,ARISE,35,Hayward One,8,Bishop O'Dowd,1,Albany
-12,El Cerrito,40,Salesian,43,Hayward Two,10,Skyline
-3,De Anza,20,Encinal,29,Realm,15,Pinole Valley
-6,Middle College,42,John Henry,37,CCPA,26,OSA
-36,Miramonte,9,Hercules,4,LPS Richmond,17,ACLC
-31,Arroyo,29,Realm,35,Hayward One,8,Bishop O'Dowd
-41,ARISE,3,De Anza,26,OSA,17,ACLC
-40,Salesian,35,Hayward One,1,Albany,43,Hayward Two
-29,Realm,15,Pinole Valley,20,Encinal,8,Bishop O'Dowd
-36,Miramonte,4,LPS Richmond,12,El Cerrito,9,Hercules
-37,CCPA,42,John Henry,6,Middle College,31,Arroyo
-10,Skyline,35,Hayward One,8,Bishop O'Dowd,1,Albany
+36,Miramonte,6,Middle College,10,Skyline,4,LPS Richmond
+17,ACLC,31,Arroyo,8,Bishop O'Dowd,43,Hayward Two
+3,De Anza,20,Encinal,26,OSA,9,Hercules
+29,Realm,37,CCPA,12,El Cerrito,40,Salesian
+42,John Henry,35,Hayward One,15,Pinole Valley,41,ARISE
+1,Albany,8,Bishop O'Dowd,17,ACLC,9,Hercules
+31,Arroyo,43,Hayward Two,12,El Cerrito,4,LPS Richmond
+42,John Henry,26,OSA,35,Hayward One,6,Middle College
+20,Encinal,36,Miramonte,3,De Anza,41,ARISE
+15,Pinole Valley,37,CCPA,29,Realm,40,Salesian
+1,Albany,10,Skyline,4,LPS Richmond,35,Hayward One
+42,John Henry,17,ACLC,6,Middle College,9,Hercules
+43,Hayward Two,12,El Cerrito,3,De Anza,40,Salesian
+37,CCPA,41,ARISE,15,Pinole Valley,29,Realm
+10,Skyline,8,Bishop O'Dowd,36,Miramonte,31,Arroyo
+1,Albany,20,Encinal,26,OSA,-1,Spooky Team

@@ -3,7 +3,6 @@ from random import randint
 import os.path
 parser = argparse.ArgumentParser()
 parser.add_argument('-input')
-parser.add_argument('-n')
 args = parser.parse_args()
 print(args)
 
