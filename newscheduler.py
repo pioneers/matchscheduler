@@ -29,6 +29,7 @@ schools = []
 def process(line):
     values = line.rstrip().split(",")
     schools.append(Team(values[0], values[1]))
+    print(values[0], values[1])
 
 #input = sys.stdin.readline().rstrip().split(" ")
 csvFile = args.input
@@ -41,8 +42,11 @@ gap = int(args.gap) #Time before school can play again
 matches = []
 teamsLeft = schools.copy()
 totalRounds = (len(schools)*3)//4
+
+
 for i in range(totalRounds):
     matchedTeams = []
+    print("test0")
     if len(teamsLeft) >= 4:
         j = 0
         while j < 4:
@@ -62,7 +66,9 @@ for i in range(totalRounds):
                 matchedTeams.append(team)
                 teamsLeft.remove(team)
                 k += 1
+
     perm = list(permutations(range(4)))
+
     for p in perm:
         if matchedTeams[p[0]] not in matchedTeams[p[1]].playedWith and matchedTeams[p[2]] not in matchedTeams[p[3]].playedWith:
             matches.append(Match(matchedTeams[p[0]],matchedTeams[p[1]],matchedTeams[p[2]],matchedTeams[p[3]]))
@@ -80,23 +86,25 @@ for i in range(totalRounds):
             for t in [matchedTeams[p[r]] for r in range(4)]:
                 t.canPlay = gap*-1 -1
             break
+
     for s in schools:
         s.canPlay += 1
+
 if teamsLeft:
     ghosts = 4 - len(teamsLeft)
     for g in range(ghosts):
         teamsLeft.append(Team("-1","Spooky Team"))
-matchedTeams = teamsLeft
-perm = list(permutations(range(4)))
-for p in perm:
-    if matchedTeams[p[0]] not in matchedTeams[p[1]].playedWith and matchedTeams[p[2]] not in matchedTeams[p[3]].playedWith:
-        matches.append(Match(matchedTeams[p[0]],matchedTeams[p[1]],matchedTeams[p[2]],matchedTeams[p[3]]))
-        for i in range(2):
-            matchedTeams[p[i]].playedAgainst.append(matchedTeams[p[2]])
-            matchedTeams[p[i]].playedAgainst.append(matchedTeams[p[3]])
-            matchedTeams[p[i+2]].playedAgainst.append(matchedTeams[p[0]])
-            matchedTeams[p[i+2]].playedAgainst.append(matchedTeams[p[1]])
-        break
+    matchedTeams = teamsLeft
+    perm = list(permutations(range(4)))
+    for p in perm:
+        if matchedTeams[p[0]] not in matchedTeams[p[1]].playedWith and matchedTeams[p[2]] not in matchedTeams[p[3]].playedWith:
+            matches.append(Match(matchedTeams[p[0]],matchedTeams[p[1]],matchedTeams[p[2]],matchedTeams[p[3]]))
+            for i in range(2):
+                matchedTeams[p[i]].playedAgainst.append(matchedTeams[p[2]])
+                matchedTeams[p[i]].playedAgainst.append(matchedTeams[p[3]])
+                matchedTeams[p[i+2]].playedAgainst.append(matchedTeams[p[0]])
+                matchedTeams[p[i+2]].playedAgainst.append(matchedTeams[p[1]])
+            break
 
 #for i in range(len(schools)):
     #print(schools[i].name, [y.name for y in schools[i].playedAgainst])
@@ -115,3 +123,4 @@ with open("matches.csv", "a") as f:
         "," + m.b2.id + "," + m.b2.name +
         "," + m.g1.id + "," + m.g1.name +
         "," + m.g2.id + "," + m.g2.name + "\n")
+        print(m.b1.id,m.b2.id,m.g1.id,m.g2.id)
